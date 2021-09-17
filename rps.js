@@ -4,7 +4,6 @@ async function BestOfFiveRPSGame(){
     let computerRoundWins = 0;
     let roundCounter = 1;
 
-
     while (humanRoundWins != 3 && computerRoundWins != 3){
         await sleep(100);
         let roundResult;
@@ -17,6 +16,16 @@ async function BestOfFiveRPSGame(){
             computerRoundWins++;
             roundCounter++;
         }
+    }
+
+    declareFinalWinner(humanRoundWins);
+}
+
+function declareFinalWinner(humanRoundWins) {
+    if (humanRoundWins==3) {
+        logRound("","Human Wins.");
+    } else {
+        logRound("","Computer Wins.");
     }
 }
   
@@ -47,30 +56,38 @@ function humanInput() {
 }
 
 function evaluateRPSResult(humanChoice, computerChoice, roundCounter) {
-
+    let logString;
     if (humanChoice == computerChoice) {
-        logRound(roundCounter, "Tie. Replay Round.");
+        logString = generateLogString(roundCounter, ".", "Tie. Replay Round.");
+        logRound(roundCounter, logString);
         return 0;
     } else if (humanChoice == "rock" && computerChoice == "scissors") {
-        logRound(roundCounter, `Human Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        logString = generateLogString(roundCounter, ".", `Human Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        logRound(roundCounter, logString);
         return 1;
     } else if (humanChoice == "paper" && computerChoice == "rock") {
-        logRound(roundCounter, `Human Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        logString = generateLogString(roundCounter, ".", `Human Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        logRound(roundCounter, logString);
         return 1;
     } else if (humanChoice == "scissors" && computerChoice == "paper") {
-        logRound(roundCounter, `Human Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        logString = generateLogString(roundCounter, ".", `Human Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        logRound(roundCounter, logString);
         return 1;
     } else {
-        logRound(roundCounter, `Computer Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        logString = generateLogString(roundCounter, ".", `Computer Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        logRound(roundCounter, logString);
         return 2;
     }
-
 }
 
-function logRound(roundCounter, string) {
+function generateLogString(prefix="", separator="", string) {
+    return prefix + separator + string;
+}
+
+function logRound(roundCounter="", string) {
     let elementID = "result"+roundCounter;
     let element = document.getElementById(elementID);
-    element.innerHTML = roundCounter + ". " +string;
+    element.innerHTML = string;
 }
 
 function clearResults() {
