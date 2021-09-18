@@ -39,22 +39,23 @@ button, input[type="button"] {
     box-shadow: 1px 1px 1px gray;
 }
 
-#start-button {
+#restart-button {
     margin: 25px 0px;
     height: 50px;
     width: 250px;
     font-size: 20px;
     font-weight: 600;
+    visibility: hidden;
 }
 
 .human-input-buttons {
-    display: none;
+    display: flex;
     justify-content: center;
     gap: 15px;
     padding: 15px;
 }
 
-input[type="button"] {
+.human-input-buttons button {
     color: transparent;
     height: 100px;
     width: 100px;
@@ -64,7 +65,7 @@ input[type="button"] {
     border-radius: 15px;
 }
 
-button:hover, input[type="button"]:hover {
+button:hover {
     cursor: pointer;
     background-color: #ebdcd0;
     box-shadow: 1 1 3px white;

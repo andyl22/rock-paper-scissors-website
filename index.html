@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script type="text/javascript" src="rps.js" defer></script>
     <meta charset="UTF-8">
@@ -7,20 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Simple RPS Javascript Project</title>
 </head>
+
 <body>
     <header>
-        <img src="rps.jpg" id ="header-image">
+        <img src="rps.jpg" id="header-image">
     </header>
     <link rel="stylesheet" type="text/css" href="style.css">
     <main>
         <div class="left">
             <h1>Rock, Paper, Scissors Game</h1>
-            <p>Best of 5 Rounds. See if you can beat the computer.</p>
-            <button id="start-button">Start New Game</button>
+            <p>First to 5 Rounds. See if you can beat the computer.</p>
             <div class="human-input-buttons">
-                <input type="button" class="rps-choice" id = "rock" value="rock">
-                <input type="button" class="rps-choice" id = "paper" value="paper">
-                <input type="button" class="rps-choice" id = "scissors" value="scissors">
+                <button class="rps-choice" id="rock"></button>
+                <button class="rps-choice" id="paper"></button>
+                <button class="rps-choice" id="scissors"></button>
             </div>
             <div class="tally">
                 <p id="human-score">Human: 0</p>
@@ -28,15 +29,13 @@
             </div>
             <div class="audit-container">
                 <ol>
-                    <li id="result1"></li>
-                    <li id="result2"></li>
-                    <li id="result3"></li>
-                    <li id="result4"></li>
-                    <li id="result5"></li>
+                    <li id="result-round"></li>
                 </ol>
                 <p id="result"></p>
             </div>
-        
+            <button id="restart-button">Restart Game</button>
+
     </main>
 </body>
+
 </html>
