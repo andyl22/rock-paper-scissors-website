@@ -1,8 +1,9 @@
 html, body {
-    background: rgb(47 48 111);
+    background: rgb(226, 230, 206);
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100%;
     margin: 0;
     padding: 0;
     font-family:Georgia, 'Times New Roman', Times, serif;
@@ -11,7 +12,7 @@ html, body {
 header {
     display: flex;
     justify-content: center;
-    background-color: black;
+    background-color: rgb(68, 48, 48);
     flex-shrink: 1;
 }
 
@@ -26,32 +27,80 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: #160229;
     margin: 30px;
+}
+
+button, input[type="button"] {
+    border-radius: 10px;
+    border-width: 0px;
+    box-shadow: inset;
+    background-color: #e4b996;
+    box-shadow: 1px 1px 1px gray;
 }
 
 #start-button {
     margin: 25px 0px;
     height: 50px;
     width: 250px;
-    border-radius: 10px;
-    border-width: 0px;
     font-size: 20px;
     font-weight: 600;
 }
 
-#start-button:hover {
-    background: rgb(230, 230, 230);
-    box-shadow: 0 0 3px rgb(66, 66, 66);
+.human-input-buttons {
+    display: none;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+}
+
+input[type="button"] {
+    color: transparent;
+    height: 100px;
+    width: 100px;
+    background-size: 90px 90px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+}
+
+button:hover, input[type="button"]:hover {
+    cursor: pointer;
+    background-color: #ebdcd0;
+    box-shadow: 1 1 3px white;
+}
+
+#rock {
+    background-image: url("resources/rock.png");
+}
+
+#scissors {
+    background-image: url("resources/Scissor.png");
+}
+
+#paper {
+    background-image: url("resources/paper.png");
+}
+
+.tally {
+    display: flex;
+    justify-content: center;
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 26px;
+    text-decoration: underline;
 }
 
 p {
     font-size: 20px;
     margin: 10px 20px;
+}
+
+.audit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 ol {
@@ -64,12 +113,16 @@ li {
     margin-bottom: 10px;
 }
 
+p#audit {
+    font-size: 15px;
+}
+
 #result {
-    margin-top: 30px;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
 }
+
 
 @media only screen and (max-width: 968px) {
     img {

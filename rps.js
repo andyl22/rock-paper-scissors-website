@@ -3,6 +3,7 @@ async function BestOfFiveRPSGame(){
     let humanRoundWins = 0;
     let computerRoundWins = 0;
     let roundCounter = 1;
+    let scoreString;
 
     while (humanRoundWins != 3 && computerRoundWins != 3){
         await sleep(100);
@@ -12,9 +13,13 @@ async function BestOfFiveRPSGame(){
         } else if (roundResult==1) {
             humanRoundWins++;
             roundCounter++;
+            scoreString = generateLogString("Human", ": ", humanRoundWins);
+            log("human-score", scoreString, 2);
         } else {
             computerRoundWins++;
             roundCounter++;
+            scoreString = generateLogString("Computer", ": ", computerRoundWins);
+            log("computer-score", scoreString, 2);
         }
     }
 
@@ -23,9 +28,9 @@ async function BestOfFiveRPSGame(){
 
 function declareFinalWinner(humanRoundWins) {
     if (humanRoundWins==3) {
-        logRound("","Human Wins.");
+        log("result", "Human Wins.");
     } else {
-        logRound("","Computer Wins.");
+        log("result", "Computer Wins.");
     }
 }
   
@@ -58,35 +63,34 @@ function humanInput() {
 function evaluateRPSResult(humanChoice, computerChoice, roundCounter) {
     let logString;
     if (humanChoice == computerChoice) {
-        logString = generateLogString(roundCounter, ".", "Tie. Replay Round.");
-        logRound(roundCounter, logString);
+        logString = generateLogString(+ roundCounter, ". ", "Tie. Replay Round.");
+        log("result"+roundCounter,logString);
         return 0;
     } else if (humanChoice == "rock" && computerChoice == "scissors") {
-        logString = generateLogString(roundCounter, ".", `Human Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
-        logRound(roundCounter, logString);
+        logString = generateLogString(roundCounter, ". ", `<strong>Human Wins</strong> --- Human picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        log("result"+roundCounter,logString);
         return 1;
     } else if (humanChoice == "paper" && computerChoice == "rock") {
-        logString = generateLogString(roundCounter, ".", `Human Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
-        logRound(roundCounter, logString);
+        logString = generateLogString(roundCounter, ". ", `<strong>Human Wins</strong> --- Human picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        log("result"+roundCounter,logString);
         return 1;
     } else if (humanChoice == "scissors" && computerChoice == "paper") {
-        logString = generateLogString(roundCounter, ".", `Human Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
-        logRound(roundCounter, logString);
+        logString = generateLogString(roundCounter, ". ", `<strong>Human Wins</strong> --- Human picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        log("result"+roundCounter,logString);
         return 1;
     } else {
-        logString = generateLogString(roundCounter, ".", `Computer Wins.\nHuman picked ${humanChoice}. Computer picked ${computerChoice}.`);
-        logRound(roundCounter, logString);
+        logString = generateLogString(roundCounter, ". ", `<strong>Computer Wins</strong> --- Human picked ${humanChoice}. Computer picked ${computerChoice}.`);
+        log("result"+roundCounter,logString);
         return 2;
     }
 }
 
 function generateLogString(prefix="", separator="", string) {
-    return prefix + separator + string;
+    return prefix + separator + string + "<br>";
 }
 
-function logRound(roundCounter="", string) {
-    let elementID = "result"+roundCounter;
-    let element = document.getElementById(elementID);
+function log(idElement, string) {
+    let element = document.getElementById(idElement);
     element.innerHTML = string;
 }
 
@@ -96,6 +100,9 @@ function clearResults() {
     document.getElementById("result3").innerHTML = "";
     document.getElementById("result4").innerHTML = "";
     document.getElementById("result5").innerHTML = "";
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("human-score").innerHTML = "Human: 0";
+    document.getElementById("computer-score").innerHTML = "Computer: 0";
 }
 
 function sleep(ms) {
